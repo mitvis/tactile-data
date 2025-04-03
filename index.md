@@ -7,7 +7,7 @@ title: Tactile data - Homepage
 
 An area to experiment with VL and TVL code snippets and outputs.
 
-[Open the sandbox]({% link sandbox/index.md %})
+[Open the sandbox]({{ site.baseurl }}{% link sandbox/index.md %})
 
 ## Prototype gallery
 
