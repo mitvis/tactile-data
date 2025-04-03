@@ -3,9 +3,6 @@ layout: default
 title: Tactile data - Homepage
 ---
 
-# tactile-data
-Easy access to all sandbox and prototype files.
-
 ## Sandbox
 
 An area to experiment with VL and TVL code snippets and outputs.

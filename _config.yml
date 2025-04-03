@@ -1,1 +1,3 @@
+description: Easy access to all sandbox and prototype files.
 theme: jekyll-theme-minimal
+baseurl: /tactile-data
