@@ -20,20 +20,20 @@
       </style>
       
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Tactile data - Homepage | tactile-data</title>
+<title>Stacked Bar Chart | tactile-data</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Tactile data - Homepage" />
+<meta property="og:title" content="Stacked Bar Chart" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Easy access to all sandbox and prototype files." />
 <meta property="og:description" content="Easy access to all sandbox and prototype files." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="http://localhost:4000/sandbox/charts/stacked-bar.html" />
+<meta property="og:url" content="http://localhost:4000/sandbox/charts/stacked-bar.html" />
 <meta property="og:site_name" content="tactile-data" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Tactile data - Homepage" />
+<meta property="twitter:title" content="Stacked Bar Chart" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Easy access to all sandbox and prototype files.","headline":"Tactile data - Homepage","name":"tactile-data","url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Easy access to all sandbox and prototype files.","headline":"Stacked Bar Chart","url":"http://localhost:4000/sandbox/charts/stacked-bar.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/style.css?v=eba129e0bdfbe9b38709f30517a2e5ece52f0633">
@@ -81,29 +81,46 @@
       </header>
       <section>
 
-      <h2 id="sandbox">Sandbox</h2>
+      <h2>Stacked Bar Chart</h2>
 
-<p>An area to experiment with VL and TVL code snippets and outputs.</p>
+  <div id="vega-container" aria-hidden="true"></div>
 
-<p><a href="/sandbox/">Open the sandbox</a></p>
+  <div id="olli-container"></div>
 
-<h2 id="prototype-gallery">Prototype gallery</h2>
+  <script type="text/javascript">
 
-<p>Links to SVG files, and interactive prototypes or editors where applicable.</p>
 
-<h3 id="outputs">Outputs</h3>
+    const vlSpec =
+      {
+  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+  data: {
+    url: "https://raw.githubusercontent.com/vega/vega-datasets/next/data/barley.json",
+  },
+  mark: "bar",
+  encoding: {
+    x: { aggregate: "sum", field: "yield" },
+    y: { field: "variety" },
+    color: { field: "site" },
+  },
+};
 
-<ul>
-  <li>Example: <a href="/images/tactile-visualization-example.svg">Tactile Visualization (TVL default - sample Stocks line chart)</a></li>
-</ul>
-
-<h3 id="tools">Tools</h3>
-
-<ul>
-  <li><a target="_blank" rel="noopenner noreferrer" href="http://localhost:9000">TVL Renderer - local</a></li>
-  <li><a target="_blank" rel="noopenner noreferrer" href="https://mitvis.github.io/umwelt/editor/">Umwelt</a></li>
-</ul>
-
+  // code to render the vega-lite chart
+  const vegaSpec = vegaLite.compile(vlSpec).spec;
+  const runtime = vega.parse(vegaSpec);
+  const vegaContainer = document.getElementById('vega-container');
+  const view = new vega.View(runtime)
+    .logLevel(vega.Warn)
+    .initialize(vegaContainer)
+    .renderer('svg')
+    .hover()
+    .run();
+    
+  // code to render the olli treeview
+  OlliAdapters.VegaLiteAdapter(vlSpec).then(olliVisSpec => {
+    const olliRender = olli(olliVisSpec);
+    document.getElementById("olli-container").append(olliRender);
+  })
+  </script>
 
       </section>
       <footer>
