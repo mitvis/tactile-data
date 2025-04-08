@@ -20,20 +20,20 @@
       </style>
       
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Sandbox | tactile-data</title>
+<title>Aggregate Bar Chart | tactile-data</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Sandbox" />
+<meta property="og:title" content="Aggregate Bar Chart" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Easy access to all sandbox and prototype files." />
 <meta property="og:description" content="Easy access to all sandbox and prototype files." />
-<link rel="canonical" href="http://localhost:4000/sandbox/" />
-<meta property="og:url" content="http://localhost:4000/sandbox/" />
+<link rel="canonical" href="http://localhost:4000/sandbox/charts/aggregate-bar.html" />
+<meta property="og:url" content="http://localhost:4000/sandbox/charts/aggregate-bar.html" />
 <meta property="og:site_name" content="tactile-data" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Sandbox" />
+<meta property="twitter:title" content="Aggregate Bar Chart" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Easy access to all sandbox and prototype files.","headline":"Sandbox","url":"http://localhost:4000/sandbox/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Easy access to all sandbox and prototype files.","headline":"Aggregate Bar Chart","url":"http://localhost:4000/sandbox/charts/aggregate-bar.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/style.css?v=4b5a26525a082690adcf6be68157d11dac56c39e">
@@ -81,32 +81,53 @@
       </header>
       <section>
 
-      <h2 id="welcome-to-the-project-sandbox">Welcome to the project sandbox</h2>
+      <h2>Aggregate Bar Chart</h2>
 
-<p>The purpose of the sandbox is to provide a space for learning about Vega Lite and Tactile Vega Lite, creating test charts and editing parameters.</p>
+  <div id="vega-container" aria-hidden="true"></div>
 
-<h3 id="vega-lite-with-olli-enabled">Vega Lite with Olli enabled</h3>
+  <div id="olli-container"></div>
 
-<p>View the list of test charts below. Happy experimenting and learning!</p>
+  <script type="text/javascript">
 
-<ul>
-  <li><a href="/sandbox/charts/line.html">Test: Line chart</a></li>
-</ul>
 
-<h4 id="bar-charts">Bar charts</h4>
+    const vlSpec =
+      {
+  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+  data: {
+    url: "https://raw.githubusercontent.com/vega/vega-datasets/next/data/seattle-weather.csv",
+  },
+  mark: "bar",
+  encoding: {
+    x: {
+      timeUnit: "month",
+      field: "date",
+      type: "ordinal",
+    },
+    y: {
+      aggregate: "mean",
+      field: "precipitation",
+      type: "quantitative",
+    },
+  },
+};
 
-<ul>
-  <li><a href="/sandbox/charts/simple-bar.html">Simple Bar Chart</a></li>
-  <li><a href="/sandbox/charts/aggregate-bar.html">Aggregate Bar Chart</a></li>
-  <li><a href="/sandbox/charts/groupped-bar.html">Groupped Bar Chart</a></li>
-  <li><a href="/sandbox/charts/stacked-bar.html">Stacked Bar Chart</a></li>
-  <li>
-    <ul>
-      <li><a href="/sandbox/charts/population-bar.html">Population Pyramid Chart</a></li>
-    </ul>
-  </li>
-</ul>
-
+  // code to render the vega-lite chart
+  const vegaSpec = vegaLite.compile(vlSpec).spec;
+  const runtime = vega.parse(vegaSpec);
+  const vegaContainer = document.getElementById('vega-container');
+  const view = new vega.View(runtime)
+    .logLevel(vega.Warn)
+    .initialize(vegaContainer)
+    .renderer('svg')
+    .hover()
+    .run();
+    
+  // code to render the olli treeview
+  OlliAdapters.VegaLiteAdapter(vlSpec).then(olliVisSpec => {
+    const olliRender = olli(olliVisSpec);
+    document.getElementById("olli-container").append(olliRender);
+  })
+  </script>
 
       </section>
       <footer>

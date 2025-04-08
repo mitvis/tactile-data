@@ -11,5 +11,12 @@ The purpose of the sandbox is to provide a space for learning about Vega Lite an
 
 View the list of test charts below. Happy experimenting and learning!
 
-- [Line chart]({{ site.baseurl }}{% link sandbox/charts/line.html %})
-- [Stacked bar Chart]({{ site.baseurl }}{% link sandbox/charts/stacked-bar.html %})
+- [Test: Line chart]({{ site.baseurl }}{% link sandbox/charts/line.html %})
+
+#### Bar charts
+
+- [Simple Bar Chart]({{ site.baseurl }}{% link sandbox/charts/simple-bar.html %})
+- [Aggregate Bar Chart]({{ site.baseurl }}{% link sandbox/charts/aggregate-bar.html %})
+- [Groupped Bar Chart]({{ site.baseurl }}{% link sandbox/charts/groupped-bar.html %})
+- [Stacked Bar Chart]({{ site.baseurl }}{% link sandbox/charts/stacked-bar.html %})
+- - [Population Pyramid Chart]({{ site.baseurl }}{% link sandbox/charts/population-bar.html %})
