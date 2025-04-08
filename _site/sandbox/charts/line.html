@@ -36,7 +36,7 @@
 {"@context":"https://schema.org","@type":"WebPage","description":"Easy access to all sandbox and prototype files.","headline":"Line chart","url":"http://localhost:4000/sandbox/charts/line.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=4b5a26525a082690adcf6be68157d11dac56c39e">
+    <link rel="stylesheet" href="/assets/css/style.css?v=e75591e4ea2caf24195a9becd4bd820e44006cdb">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -83,9 +83,13 @@
 
       <h2>Line chart</h2>
 
-  <div id="vega-container" aria-hidden="true"></div>
+<h3>Olli tree view</h3>
 
   <div id="olli-container"></div>
+
+<h3>Vega Lite view</h3>
+
+  <div id="vega-container" aria-hidden="true"></div>
 
   <script type="text/javascript">
 
@@ -101,7 +105,7 @@
         "x": { "field": "date", "type": "ordinal" },
         "y": { "field": "story point", "type": "quantitative" }
         }
-      };
+};
 
   // code to render the vega-lite chart
   const vegaSpec = vegaLite.compile(vlSpec).spec;
@@ -120,6 +124,7 @@
     document.getElementById("olli-container").append(olliRender);
   })
   </script>
+
 
       </section>
       <footer>

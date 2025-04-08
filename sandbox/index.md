@@ -19,4 +19,4 @@ View the list of test charts below. Happy experimenting and learning!
 - [Aggregate Bar Chart]({{ site.baseurl }}{% link sandbox/charts/aggregate-bar.html %})
 - [Groupped Bar Chart]({{ site.baseurl }}{% link sandbox/charts/groupped-bar.html %})
 - [Stacked Bar Chart]({{ site.baseurl }}{% link sandbox/charts/stacked-bar.html %})
-- - [Population Pyramid Chart]({{ site.baseurl }}{% link sandbox/charts/population-bar.html %})
+- [Population Pyramid Chart]({{ site.baseurl }}{% link sandbox/charts/population-bar.html %})
